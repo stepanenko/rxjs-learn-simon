@@ -1,20 +1,6 @@
-import { Subject } from 'rxjs';
+import { ReplaySubject } from 'rxjs';
 
-const subject = new Subject();
-subject.subscribe(data => addItem('Observer 1: ' + data));
-
-subject.next('The first thing');
-
-const obs2 = subject.subscribe(data => {
-  addItem('Observer 2: ' + data)
-});
-
-subject.next('The second thing');
-subject.next('The third thing');
-
-obs2.unsubscribe();
-
-subject.next('The final thing');
+const subject = new ReplaySubject(30, 500); // 2 last next() will be logged
 
 function addItem(val: any) {
   const node = document.createElement('li');
