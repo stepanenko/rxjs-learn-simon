@@ -1,4 +1,4 @@
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, fromEvent } from 'rxjs';
 import { share } from 'rxjs/operators';
 
 // const observable = Observable.create(function subscribe(observer: any) {
@@ -25,6 +25,15 @@ setTimeout(() => {
     (x: any) => addItem('Subscriber 2: ' + x)
   )
 }, 1000);
+
+// Obs From Event:
+const ob = fromEvent(document, 'mousemove');
+
+setTimeout(() => {
+  ob.subscribe(
+    e => addItem(e)
+  );
+}, 3000);
 
 function addItem(val: any) {
   const node = document.createElement('li');
