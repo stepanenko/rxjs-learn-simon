@@ -9,7 +9,7 @@ const observable: Observable<any> = Observable.create((observer: any) => {
     setInterval(() => {
       observer.next('I am good');
     }, 2000)
-  } catch(err) {
+  } catch (err) {
     observer.error('Error: ', err);
   }
 }).pipe(share());
